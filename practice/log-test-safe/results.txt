@@ -1,0 +1,166 @@
+Проверка примеров log_test_safe
+Система: Linux localhost 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+===== practice/log-test-safe/01-strict.sh =====
+Скрипт запущен
+Скрипт завершён
+Код выхода: 0
+
+===== practice/log-test-safe/02-logging.sh =====
+[2026-10-16T16:25:26+0300] [INFO ] Это INFO
+[2026-10-16T16:25:26+0300] [WARN ] Это WARN
+[2026-10-16T16:25:26+0300] [ERROR] Это ERROR
+[2026-10-16T16:25:26+0300] [FATAL] Это FATAL
+результат работы
+Код выхода: 0
+
+===== practice/log-test-safe/03-logging-file.sh =====
+[2026-10-16T16:25:26+0300] [INFO] Старт, лог пишется в /tmp/diag-demo/demo-20261016-162526-700.log
+[2026-10-16T16:25:26+0300] [WARN] Предупреждение
+[2026-10-16T16:25:26+0300] [INFO] Завершение
+Лог-файл: /tmp/diag-demo/demo-20261016-162526-700.log
+Код выхода: 0
+
+===== practice/log-test-safe/04-trap-exit.sh =====
+Создан временный каталог: /tmp/demo.DDSVPM
+total 0
+drwx------  2 root root  80 Oct 16 16:25 .
+drwxrwxrwt 10 root root 200 Oct 16 16:25 ..
+-rw-r--r--  1 root root   0 Oct 16 16:25 file1
+-rw-r--r--  1 root root   0 Oct 16 16:25 file2
+Работа завершена
+[cleanup] удаляю /tmp/demo.DDSVPM
+Код выхода: 0
+
+===== practice/log-test-safe/05-trap-err.sh =====
+всё хорошо
+Продолжаем работу
+Код выхода: 0
+
+===== practice/log-test-safe/06-signals.sh =====
+Работаю... (нажмите Ctrl+C или убейте снаружи: kill 713)
+  тик 1
+  тик 2
+[signal] INT
+[cleanup] освобождаю ресурсы...
+Код выхода после сигнала: 124
+
+===== practice/log-test-safe/07-config.sh =====
+Загружаю /tmp/tmp.ZWzidQZ5Dc:
+  LOG_LEVEL=DEBUG
+  LOG_DIR=/tmp/my-logs
+  CMD_TIMEOUT=15
+  ПРОПУЩЕНО: rm -rf / # это НЕ выполнится
+
+LOG_LEVEL=DEBUG
+LOG_DIR=/tmp/my-logs
+CMD_TIMEOUT=15
+Код выхода: 0
+
+===== practice/log-test-safe/08-args.sh =====
+LOG_LEVEL=INFO
+OUT_DIR=/tmp/diag-out
+Код выхода: 0
+
+===== practice/log-test-safe/09-validate.sh =====
+Валидация пройдена: LOG_LEVEL=INFO, CMD_TIMEOUT=2, пороги: 80/90
+Код выхода: 0
+
+===== practice/log-test-safe/10-run.sh =====
+=== Быстрая команда ===
+[DEBUG] RUN: uname :: uname -a
+Linux localhost 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+=== Медленная команда (упадёт по таймауту) ===
+[DEBUG] RUN: sleep :: sleep 30
+[WARN]  Команда 'sleep' вернула код 124
+
+Как и ожидалось, команда прервана
+
+=== Несуществующая команда ===
+[DEBUG] RUN: nonexistent :: /no/such/binary
+[WARN]  Команда 'nonexistent' вернула код 127
+timeout: failed to execute process: No such file or directory (os error 2)
+Команда не найдена, продолжили
+Код выхода: 0
+
+===== practice/log-test-safe/11-check-system.sh =====
+Отчёт: /tmp/diag-out/system.txt
+=== hostname ===
+localhost
+
+=== uname ===
+Linux localhost 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+=== uptime ===
+ 16:25:32 up 0 min,  1 user,  load average: 0.27, 0.06, 0.02
+
+=== who ===
+
+=== date (UTC) ===
+Fri Oct 16 13:25:32 UTC 2026
+
+=== /etc/os-release ===
+PRETTY_NAME="Ubuntu 26.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04 (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+Код выхода: 0
+
+===== practice/log-test-safe/12-check-disks.sh =====
+[INFO]  /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2: 0% (OK)
+[INFO]  /mnt/wsl: 1% (OK)
+[INFO]  /usr/lib/wsl/drivers: 76% (OK)
+[INFO]  /: 1% (OK)
+[INFO]  /mnt/wslg: 1% (OK)
+[INFO]  /usr/lib/wsl/lib: 0% (OK)
+[INFO]  /init: 1% (OK)
+[INFO]  /run: 1% (OK)
+[INFO]  /run/lock: 0% (OK)
+[INFO]  /run/shm: 0% (OK)
+[INFO]  /mnt/wslg/versions.txt: 1% (OK)
+[INFO]  /mnt/wslg/doc: 1% (OK)
+[INFO]  /mnt/c: 76% (OK)
+[INFO]  /mnt/d: 5% (OK)
+[INFO]  /mnt/f: 55% (OK)
+[INFO]  /tmp: 1% (OK)
+[INFO]  /run/credentials/systemd-journald.service: 0% (OK)
+[INFO]  /run/credentials/systemd-resolved.service: 0% (OK)
+[INFO]  /run/credentials/getty@tty1.service: 0% (OK)
+[INFO]  /run/user/0: 1% (OK)
+Код выхода: 0
+
+===== practice/log-test-safe/13-check-http.sh =====
+[ERROR] FAIL http://127.0.0.1:1 (HTTP 000000)
+Код выхода: 0
+
+===== practice/log-test-safe/14-flock.sh =====
+Блокировка взята. Работаю 10 секунд...
+  тик 1
+  тик 2
+  тик 3
+Код выхода после проверки блокировки: 124
+
+===== practice/log-test-safe/15-mask-secrets.sh =====
+=== Демонстрация ===
+user=alice password=*** host=example.com
+token=***
+api_key=***
+Authorization: Bearer ***
+нормальная строка без секретов
+Код выхода: 0
+
+===== practice/log-test-safe/16-all-in-one.sh =====
+[2026-10-16T16:25:35+0300] [INFO] (main) Старт 16-all-in-one.sh v1.0.0 PID=776
+Отчёт: /tmp/diag-final-out.tar.gz
+Лог:   /tmp/diag-final-logs/diag-20261016-162535-776.log
+Код выхода: 0

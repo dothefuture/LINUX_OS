@@ -1,0 +1,115 @@
+$ head -n 20 /proc/iomem
+00000000-00000fff : Reserved
+00001000-0009ffff : System RAM
+000e0000-000e0fff : Reserved
+000f0000-000fffff : System ROM
+00100000-001fffff : ACPI Tables
+00200000-f7ffffff : System RAM
+  0e000000-0f3b42f7 : Kernel code
+  0f400000-10278fff : Kernel rodata
+  10400000-1078c3bf : Kernel data
+  10c7c000-111fffff : Kernel bss
+f8000000-f8001fff : c4b741f5-5582-4c98-8f8b-2e082933c396
+f8002000-f8003fff : 30f1ff97-deea-4ee8-af05-19d7fce983bf
+f8004000-f8005fff : 716b91ab-a912-4ee8-ab98-a4eacf036f7c
+f8006000-f8007fff : 0b459052-5ce1-4423-a392-c413124be72a
+fec00000-fec00fff : PNP0003:00
+fee00000-fee00fff : PNP0003:00
+100000000-3eb3fffff : System RAM
+9ffe00000-9ffe02fff : c4b741f5-5582-4c98-8f8b-2e082933c396
+  9ffe00000-9ffe00fff : 5582:00:00.0
+    9ffe00000-9ffe00fff : virtio-pci-modern
+
+$ head -n 30 /proc/meminfo
+MemTotal:       15910552 kB
+MemFree:        14654268 kB
+MemAvailable:   15023804 kB
+Buffers:           48620 kB
+Cached:           497572 kB
+SwapCached:            0 kB
+Active:           112228 kB
+Inactive:         624484 kB
+Active(anon):       2916 kB
+Inactive(anon):   191328 kB
+Active(file):     109312 kB
+Inactive(file):   433156 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:       4194304 kB
+SwapFree:        4194304 kB
+Dirty:              2960 kB
+Writeback:             0 kB
+AnonPages:        191940 kB
+Mapped:           162616 kB
+Shmem:              3576 kB
+KReclaimable:      23388 kB
+Slab:              95492 kB
+SReclaimable:      23388 kB
+SUnreclaim:        72104 kB
+KernelStack:        5784 kB
+PageTables:         9868 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+
+Процессы: bash=458 sleep=459 tail=460
+
+$ head -n 12 /proc/458/maps
+5fbbdb216000-5fbbdb247000 r--p 00000000 08:30 1503                       /usr/bin/bash
+5fbbdb247000-5fbbdb34a000 r-xp 00031000 08:30 1503                       /usr/bin/bash
+5fbbdb34a000-5fbbdb381000 r--p 00134000 08:30 1503                       /usr/bin/bash
+5fbbdb381000-5fbbdb385000 r--p 0016b000 08:30 1503                       /usr/bin/bash
+5fbbdb385000-5fbbdb38e000 rw-p 0016f000 08:30 1503                       /usr/bin/bash
+5fbbdb38e000-5fbbdb39a000 rw-p 00000000 00:00 0
+5fbbe5f00000-5fbbe5f21000 rw-p 00000000 00:00 0                          [heap]
+75f2525a5000-75f252600000 r--p 00000000 08:30 2734                       /usr/lib/locale/C.utf8/LC_CTYPE
+75f252600000-75f252628000 r--p 00000000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+75f252628000-75f2527c0000 r-xp 00028000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+75f2527c0000-75f25280e000 r--p 001c0000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+75f25280e000-75f252812000 r--p 0020d000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+
+$ head -n 12 /proc/459/maps
+5e2733240000-5e2733332000 r--p 00000000 08:30 1585                       /usr/lib/cargo/bin/coreutils/sleep
+5e2733332000-5e27337ea000 r-xp 000f2000 08:30 1585                       /usr/lib/cargo/bin/coreutils/sleep
+5e27337ea000-5e2733ba9000 r--p 005aa000 08:30 1585                       /usr/lib/cargo/bin/coreutils/sleep
+5e2733ba9000-5e2733d0e000 r--p 00968000 08:30 1585                       /usr/lib/cargo/bin/coreutils/sleep
+5e2733d0e000-5e2733d14000 rw-p 00acd000 08:30 1585                       /usr/lib/cargo/bin/coreutils/sleep
+5e2733d14000-5e2733d15000 rw-p 00000000 00:00 0
+5e273ba36000-5e273ba57000 rw-p 00000000 00:00 0                          [heap]
+7aec13e00000-7aec13e28000 r--p 00000000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7aec13e28000-7aec13fc0000 r-xp 00028000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7aec13fc0000-7aec1400e000 r--p 001c0000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7aec1400e000-7aec14012000 r--p 0020d000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7aec14012000-7aec14014000 rw-p 00211000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+
+$ head -n 12 /proc/460/maps
+5a13ce372000-5a13ce464000 r--p 00000000 08:30 1585                       /usr/lib/cargo/bin/coreutils/tail
+5a13ce464000-5a13ce91c000 r-xp 000f2000 08:30 1585                       /usr/lib/cargo/bin/coreutils/tail
+5a13ce91c000-5a13cecdb000 r--p 005aa000 08:30 1585                       /usr/lib/cargo/bin/coreutils/tail
+5a13cecdb000-5a13cee40000 r--p 00968000 08:30 1585                       /usr/lib/cargo/bin/coreutils/tail
+5a13cee40000-5a13cee46000 rw-p 00acd000 08:30 1585                       /usr/lib/cargo/bin/coreutils/tail
+5a13cee46000-5a13cee47000 rw-p 00000000 00:00 0
+5a13e7e91000-5a13e7ed4000 rw-p 00000000 00:00 0                          [heap]
+7fdf88000000-7fdf88021000 rw-p 00000000 00:00 0
+7fdf88021000-7fdf8c000000 ---p 00000000 00:00 0
+7fdf8ebff000-7fdf8ee00000 rw-p 00000000 00:00 0
+7fdf8ee00000-7fdf8ee28000 r--p 00000000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+7fdf8ee28000-7fdf8efc0000 r-xp 00028000 08:30 14176                      /usr/lib/x86_64-linux-gnu/libc.so.6
+
+$ ls -l /proc/458/mem
+-rw------- 1 root root 0 Oct 16 16:27 /proc/458/mem
+$ dd if=/proc/458/mem bs=16 count=1 status=none
+dd: IO error: Input/output error
+Чтение ограничено ядром
+
+$ ls -l /proc/459/mem
+-rw------- 1 root root 0 Oct 16 16:27 /proc/459/mem
+$ dd if=/proc/459/mem bs=16 count=1 status=none
+dd: IO error: Input/output error
+Чтение ограничено ядром
+
+$ ls -l /proc/460/mem
+-rw------- 1 root root 0 Oct 16 16:27 /proc/460/mem
+$ dd if=/proc/460/mem bs=16 count=1 status=none
+dd: IO error: Input/output error
+Чтение ограничено ядром

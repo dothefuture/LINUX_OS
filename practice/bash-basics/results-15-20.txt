@@ -1,0 +1,27 @@
+Проверка задач 15-20
+
+$ bash 15_check_git.sh
+git version 2.53.0
+
+$ printf ... | bash 16_string_info.sh
+Верхний регистр: LINUX BASH
+Нижний регистр: linux bash
+Длина: 10
+
+$ bash 17_exit_codes.sh
+Код для /nonexistent: 2
+Код для /: 0
+Ноль означает успешное выполнение, ненулевой код означает ошибку.
+
+$ printf ... | bash 18_login.sh
+
+Пользователь student авторизован
+
+$ printf ... | bash 19_timed_input.sh
+
+Введено: готово
+
+$ printf ... | bash 20_words_array.sh
+1. один
+2. два
+3. три
