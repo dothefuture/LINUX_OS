@@ -30,6 +30,7 @@
 - [Условия и небольшие задачи](practice/bash-conditions)
 - [Обработка ошибок](practice/bash-errors)
 - [Логирование и диагностика](practice/log-test-safe)
+- [Диагностика сети](practice/network-diagnostics)
 
 ## Дополнительные заметки
 
